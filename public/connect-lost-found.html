@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Details | Campus Lost & Found</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #0d47a1;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .nav-left h1 {
+        font-size: 1.8rem;
+      }
+      .nav-right button {
+        margin-left: 1rem;
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .logout-btn {
+        background-color: #ff5252;
+        color: white;
+        font-weight: 600;
+      }
+      .logout-btn:hover {
+        background-color: #ff1744;
+      }
+      .profile-btn {
+        background-color: #4caf50;
+        color: white;
+        font-weight: 600;
+      }
+      .profile-btn:hover {
+        background-color: #388e3c;
+      }
+      .back-btn {
+        background-color: #2196f3;
+        color: white;
+        font-weight: 600;
+      }
+      .back-btn:hover {
+        background-color: #1976d2;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+      .item-container {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      .item-title {
+        font-size: 1.8rem;
+        color: #0d47a1;
+      }
+      .item-status {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+        background: #e3f2fd;
+        color: #0d47a1;
+      }
+      .item-content {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      .item-image {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .item-details {
+        flex: 1;
+      }
+      .detail-row {
+        margin-bottom: 1rem;
+      }
+      .detail-label {
+        font-weight: bold;
+        color: #0d47a1;
+        margin-right: 0.5rem;
+      }
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+      }
+      .user-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .user-text h4 {
+        color: #0d47a1;
+        margin-bottom: 0.3rem;
+      }
+      .user-text p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+      #connected-item-section {
+        display: none;
+        margin-top: 3rem;
+      }
+      #message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        display: none;
+      }
+      .alert-success {
+        background-color: #4caf50;
+        color: white;
+      }
+      .alert-danger {
+        background-color: #f44336;
+        color: white;
+      }
+      @media (max-width: 768px) {
+        .item-content {
+          flex-direction: column;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          align-items: center;
+          text-align: center;
+          margin-bottom: 1.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid #eee;
+        }
+        .item-image {
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+        }
+        .user-info {
+          justify-content: center;
+          text-align: center;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message"></div>
+
+    <nav>
+      <div class="nav-left">
+        <h1>🎒 Campus Lost & Found Bulletin</h1>
+      </div>
+      <div class="nav-right">
+        <button class="back-btn" onclick="window.history.back()">Back</button>
+        <button id="logout" class="logout-btn">Logout</button>
+        <button
+          class="profile-btn"
+          onclick="window.location.href='/profile.html'"
+        >
+          Profile
+        </button>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="item-container">
+        <div class="item-header">
+          <h2 class="item-title" id="item-type">Item Details</h2>
+          <span class="item-status" id="item-status">Status</span>
+        </div>
+
+        <div class="item-content">
+          <img src="" alt="Item image" class="item-image" id="item-image" />
+          <div class="item-details">
+            <div class="detail-row">
+              <span class="detail-label">Place:</span>
+              <span id="item-place">Not specified</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Time:</span>
+              <span id="item-time">Not specified</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Date:</span>
+              <span id="item-date">Not specified</span>
+            </div>
+
+            <div class="user-info">
+              <img
+                src=""
+                alt="User image"
+                class="user-image"
+                id="poster-image"
+              />
+              <div class="user-text">
+                <h4 id="poster-name">Posted by</h4>
+                <p id="poster-email">Email</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="connected-item-section">
+        <div class="item-container">
+          <div class="item-header">
+            <h2 class="item-title" id="connected-item-type">Connected Item</h2>
+            <span class="item-status" id="connected-item-status">Status</span>
+          </div>
+
+          <div class="item-content">
+            <img
+              src=""
+              alt="Connected item image"
+              class="item-image"
+              id="connected-item-image"
+            />
+            <div class="item-details">
+              <div class="detail-row">
+                <span class="detail-label">Place:</span>
+                <span id="connected-item-place">Not specified</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Time:</span>
+                <span id="connected-item-time">Not specified</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Date:</span>
+                <span id="connected-item-date">Not specified</span>
+              </div>
+
+              <div class="user-info">
+                <img
+                  src=""
+                  alt="User image"
+                  class="user-image"
+                  id="connected-poster-image"
+                />
+                <div class="user-text">
+                  <h4 id="connected-poster-name">Posted by</h4>
+                  <p id="connected-poster-email">Email</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

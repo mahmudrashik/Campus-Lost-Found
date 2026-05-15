@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Lost & Found</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #e3f2fd, #ffffff);
+        color: #333;
+        line-height: 1.6;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #0d47a1;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .nav-left h1 {
+        font-size: 1.8rem;
+      }
+      .nav-right button {
+        margin-left: 1rem;
+        padding: 0.6rem 1rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .login-btn {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+      }
+      .login-btn:hover {
+        background-color: white;
+        color: #0d47a1;
+      }
+      .register-btn {
+        background-color: #ffffff;
+        color: #0d47a1;
+        font-weight: 600;
+      }
+      .register-btn:hover {
+        background-color: #bbdefb;
+      }
+      .logout-btn {
+        background-color: #ff5252;
+        color: white;
+        font-weight: 600;
+      }
+      .logout-btn:hover {
+        background-color: #ff1744;
+      }
+      .profile-btn {
+        background-color: #4caf50;
+        color: white;
+        font-weight: 600;
+      }
+      .profile-btn:hover {
+        background-color: #388e3c;
+      }
+
+      header {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        background: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1")
+          center/cover no-repeat;
+        color: white;
+        position: relative;
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      header h2 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+      header p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: auto;
+        position: relative;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+      .cta-buttons {
+        margin-top: 2rem;
+        position: relative;
+      }
+      .cta-buttons button {
+        padding: 0.8rem 1.5rem;
+        margin: 0 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .cta-buttons .primary {
+        background-color: #ffffff;
+        color: #0d47a1;
+        font-weight: bold;
+      }
+      .cta-buttons .primary:hover {
+        background-color: #bbdefb;
+      }
+      .cta-buttons .secondary {
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+      }
+      .cta-buttons .secondary:hover {
+        background-color: white;
+        color: #0d47a1;
+      }
+
+      .main-container {
+        max-width: 1100px;
+        margin: 4rem auto;
+        padding: 1rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: #0d47a1;
+      }
+
+      .items-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-height: 600px;
+        overflow-y: auto;
+        padding: 1rem;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        justify-items: center;
+      }
+
+      .item-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        width: 100%;
+        max-width: 320px;
+        cursor: pointer;
+      }
+
+      .item-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .item-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .item-details {
+        margin-top: 1rem;
+      }
+
+      .item-details h4 {
+        color: #0d47a1;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .item-details p {
+        color: #555;
+        margin-bottom: 0.5rem;
+      }
+
+      .item-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+
+      .about-section,
+      .testimonials-section,
+      .faq-section {
+        padding: 5rem 2rem;
+        background: #f9f9f9;
+        text-align: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        max-width: 800px;
+        margin: auto;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s ease-in-out;
+        color: #333;
+      }
+
+      .about-text.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .testimonial {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        font-style: italic;
+        color: #333;
+      }
+
+      .faq {
+        max-width: 800px;
+        margin: 1rem auto;
+        text-align: left;
+      }
+
+      .faq h4 {
+        color: #0d47a1;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .faq p {
+        margin-bottom: 1.5rem;
+        color: #555;
+      }
+
+      .footer {
+        margin-top: 4rem;
+        padding: 2rem;
+        background-color: #0d47a1;
+        text-align: center;
+        font-size: 0.95rem;
+        color: white;
+      }
+
+      .footer a {
+        color: #bbdefb;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      #message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        display: none;
+      }
+
+      .alert-success {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      .alert-danger {
+        background-color: #f44336;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        header h2 {
+          font-size: 2rem;
+        }
+
+        header p {
+          font-size: 1rem;
+        }
+
+        .cta-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .cta-buttons button {
+          margin: 0;
+          width: 100%;
+          max-width: 200px;
+          margin: 0 auto;
+        }
+
+        .items-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        nav {
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem;
+        }
+
+        .nav-left h1 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          text-align: center;
+        }
+
+        .nav-right {
+          margin-top: 1rem;
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        .nav-right button {
+          margin-left: 0;
+          padding: 0.5rem 0.8rem;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message"></div>
+
+    <nav>
+      <div class="nav-left">
+        <h1>🎒 Campus Lost & Found Bulletin</h1>
+      </div>
+      <div class="nav-right">
+        <button class="login-btn">Login</button>
+        <button class="register-btn">Register</button>
+      </div>
+    </nav>
+
+    <header>
+      <h2>Helping Students Reunite with Their Lost Items</h2>
+      <p>
+        Report, search, and find items around the university campus with ease.
+      </p>
+      <div class="cta-buttons">
+        <button class="primary">Report Lost</button>
+        <button class="secondary">Browse Found</button>
+      </div>
+    </header>
+
+    <div class="main-container">
+      <h3 class="section-title">Lost Items</h3>
+      <div class="items-container" id="lost-items-container"></div>
+
+      <h3 class="section-title" style="margin-top: 3rem">Found Items</h3>
+      <div class="items-container" id="found-items-container"></div>
+    </div>
+
+    <section class="about-section" id="about">
+      <h3 class="section-title">About the Project</h3>
+      <p class="about-text" id="aboutText">
+        This Lost & Found web application is designed to help university
+        students easily report, search, and track lost and found items within
+        campus grounds. Whether it's a misplaced ID card, a found USB drive, or
+        an umbrella someone left in the cafeteria — this system helps students
+        reconnect with their belongings. Built using modern web technologies
+        (HTML, CSS, PHP, MySQL), the platform ensures both ease of use and
+        security for its users.
+      </p>
+    </section>
+
+    <section class="testimonials-section">
+      <h3 class="section-title">What Students Say</h3>
+      <div class="testimonial">
+        "I found my calculator within hours of reporting! This tool is a
+        life-saver." – Arman, BUP
+      </div>
+      <div class="testimonial">
+        "I uploaded a lost wallet and someone contacted me in a day. Amazing
+        initiative." – Nusaiba, DU
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h3 class="section-title">Frequently Asked Questions</h3>
+      <div class="faq">
+        <h4>❓ How do I report a lost item?</h4>
+        <p>
+          Click on "Report Lost" and fill in the necessary details along with
+          any photo you may have.
+        </p>
+        <h4>❓ What if I find something?</h4>
+        <p>
+          Use the "Report Found" feature and share where and when you found it.
+          Keep the item safe until claimed.
+        </p>
+        <h4>❓ Is my information secure?</h4>
+        <p>
+          Yes, we store all user data securely and do not share personal
+          information without consent.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      &copy; 2025 Campus Lost & Found | Built by Samiul Haque Siddique ,
+      Abdullah Al Mamun & Rashik Mahmud Majumder |
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Contact</a>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

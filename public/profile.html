@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Lost & Found System</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="post-lost.html">Report Lost</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="post-found.html">Report Found</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header bg-dark text-white">
+              <h4>Profile Information</h4>
+            </div>
+            <div class="card-body">
+              <div class="text-center mb-4">
+                <img
+                  src=""
+                  id="profile-image"
+                  class="img-thumbnail"
+                  alt="Profile Image"
+                  style="max-width: 200px"
+                />
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Name:</strong> <span id="profile-name"></span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Email:</strong> <span id="profile-email"></span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Roll No:</strong> <span id="profile-rollno"></span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Phone:</strong> <span id="profile-phone"></span>
+                </li>
+                <li class="list-group-item">
+                  <strong>Department:</strong> <span id="profile-dept"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header bg-dark text-white">
+              <h4>My Reports</h4>
+            </div>
+            <div class="card-body">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="lost-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#lost"
+                    type="button"
+                  >
+                    Lost Items
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="found-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#found"
+                    type="button"
+                  >
+                    Found Items
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="lost"
+                  role="tabpanel"
+                >
+                  <div class="table-responsive mt-3">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Place</th>
+                          <th>Time</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="lost-items">
+                        <!-- Will be populated by JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="found" role="tabpanel">
+                  <div class="table-responsive mt-3">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Place</th>
+                          <th>Time</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody id="found-items">
+                        <!-- Will be populated by JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
