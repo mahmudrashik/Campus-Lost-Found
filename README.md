@@ -4,7 +4,7 @@ A full-stack web application for reporting, browsing, and managing lost and foun
 
 The system helps students publish lost item reports, submit found item reports, view item details, and keep track of their own submissions through a protected profile dashboard.
 
-![Login Preview](./public/login.png)
+![Login Preview](./public/stats.png)
 
 ## Project Information
 
