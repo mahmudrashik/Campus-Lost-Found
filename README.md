@@ -12,7 +12,7 @@ The system helps students publish lost item reports, submit found item reports, 
 | --- | --- |
 | Project name | Campus Lost & Found |
 | Course | Software Development Project I (SDP-I) |
-| Developed by | Mahmud Rashik |
+| Developed by | Rashik Mahmud Majumder |
 | Repository | `mahmudrashik/Campus-Lost-Found` |
 
 ## Key Features
@@ -43,7 +43,7 @@ The system helps students publish lost item reports, submit found item reports, 
 
 | Login | Register |
 | --- | --- |
-| ![Login page](./public/login.png) | ![Register page](./public/register.png) |
+| ![Login page](./public/stats.png) | ![Register page](./public/reset-password.png) |
 
 ## Requirements
 
@@ -167,7 +167,7 @@ Campus-Lost-Found/
 
 ## Author
 
-Developed by **Mahmud Rashik** for the SDP-I course.
+Developed by **Rashik Mahmud Majumder** for the SDP-I course.
 
 ## License
 
