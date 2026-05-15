@@ -41,9 +41,9 @@ The system helps students publish lost item reports, submit found item reports, 
 
 ## Screenshots
 
-| Login | Register |
+| Login | Reset Password |
 | --- | --- |
-| ![Login page](./public/stats.png) | ![Register page](./public/reset-password.png) |
+| ![Login page](./public/stats.png) | ![Reset_Password page](public/reset password.png) |
 
 ## Requirements
 
